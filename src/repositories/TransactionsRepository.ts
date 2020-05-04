@@ -35,6 +35,7 @@ class TransactionsRepository {
         outcome += transaction.value;
         total -= outcome;
       }
+      return total;
     });
 
     return { income, outcome, total };
