@@ -27,17 +27,13 @@ transactionRouter.post('/', (request, response) => {
       transactionsRepository,
     );
 
-    createTransaction.execute({
+    const transaction = createTransaction.execute({
       title,
       value,
       type,
     });
 
-    const balance = transactionsRepository.getBalance();
-    const listTransactions = transactionsRepository.all();
-    const transactions = { transactions: listTransactions, balance };
-
-    return response.json(transactions);
+    return response.json(transaction);
   } catch (err) {
     return response.status(400).json({ error: err.message });
   }
